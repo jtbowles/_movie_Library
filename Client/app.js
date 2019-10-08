@@ -3,7 +3,7 @@
         var dict = {
         	Title : this["title"].value,
             Genre : this["genre"].value,
-        	DirectorName: this["director"].value
+        	DirectorName : this["director"].value
         };
 
         $.ajax({
