@@ -38,7 +38,7 @@ namespace WebAPISample.Controllers
 
         // POST api/movies
         [HttpPost]
-        public Movie CreateMovie(/*[FromBody]*/Movie movie)
+        public Movie CreateMovie([FromBody] Movie movie)
         {
             // Create movie in db logic
             if (!ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace WebAPISample.Controllers
 
         // PUT api/movies/1
         [HttpPut]
-        public void UpdateMovie(int id, /*[FromBody]string value*/ Movie movie)
+        public void UpdateMovie(int id, [FromBody] Movie movie)
         {
             // Update movie in db logic
             if (!ModelState.IsValid)

@@ -14,6 +14,7 @@
             data: JSON.stringify(dict),
             success: function( data, textStatus, jQxhr ){
                 $('#response pre').html( data );
+                console.log("success");
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log( errorThrown );
@@ -22,6 +23,5 @@
 
         e.preventDefault();
     }
-
     $('#my-form').submit( processForm );
 })(jQuery);
