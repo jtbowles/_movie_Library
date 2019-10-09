@@ -25,3 +25,25 @@
     }
     $('#my-form').submit( processForm );
 })(jQuery);
+
+$(document).ready(function(){
+    populateTable();
+});
+
+function populateTable(){
+    $.ajax({
+        url: 'https://localhost:44352/api/movie',
+        dataType: 'json',
+        type: 'get',
+        async: true,
+        data: JSON,
+        success: function( data, textStatus, jQxhr ){
+            $('#response pre').html( data );
+            console.log("success");
+        },
+        error: function( jqXhr, textStatus, errorThrown ){
+            console.log( errorThrown );
+        }
+
+    })
+}
