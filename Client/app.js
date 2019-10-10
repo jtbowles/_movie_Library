@@ -1,4 +1,5 @@
 (function($){
+    
     function processForm( e ){
         var dict = {
         	Title : this["title"].value,
@@ -32,9 +33,9 @@
             url: 'https://localhost:44352/api/movie',
             dataType: 'json',
             type: 'get',
-            async: true,
-            data: JSON,
+            contentType: 'application/json',
             success: function( data, textStatus, jQxhr ){
+                $('#my-form').after(textStatus);
                 console.log('success');
 
             },
@@ -45,8 +46,8 @@
         })
     }
 
-    $('#get-movies').on('click', populateMovieLibrary());
     $('#my-form').submit( processForm );
+    $('#getmovies').on('click', populateMovieLibrary());
 })(jQuery);
 
 
