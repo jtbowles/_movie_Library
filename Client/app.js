@@ -31,10 +31,13 @@
         $.ajax({
             url: 'https://localhost:44352/api/movie',
             dataType: 'json',
-            type: 'get',
+            type: 'get',    
             contentType: 'application/json',
             success: function( data, textStatus, jQxhr ){
                 //var table = $('#movie-library');
+
+                // REMOVE TABLE TO NOT CREATE DUPLICATES!!! 
+                
                 $('#my-form').after(textStatus);
                 $('#response').append('<table id=\"movie-library\" class=\"table table-striped table-hover\"</table>');
                 $('#movie-library').append('<tr>' + 
