@@ -22,7 +22,7 @@
 	<table id="movie-library" class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th contenteditable="true">Movie Title</th>
+				<th>Movie Title</th>
 				<th>Director</th>
 				<th>Genre</th>
 			</tr>
@@ -36,9 +36,61 @@
 	</div>
 	
 	<button id="getmovies" type="button">Movie Library</button>
+	<button id="editmovies" type="button">Edit Library</button>
+	<button id="updatemovies" type="button">Update Library</button>
+
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" src="./app.js"></script>
+
+<script type="text/javascript">
+
+    function getMovie(id){
+        $.ajax({
+            url: 'https://localhost:44352/api/movie/' + id,
+            dataType: 'json',
+            type: 'get',
+            data: {id},
+            success: function( data, textStatus, jQxhr ){
+            	//console.log(id);
+            	updateMovie(data);
+                //console.log(data);
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+            }
+        })
+    }
+
+        function updateMovie(movieToEdit){
+        var updatedMovie = {
+        	//Id : movieToEdit.Id,
+        	Title : movieToEdit.Title,
+            Genre : movieToEdit.Genre,
+        	DirectorName : movieToEdit.DirectorName
+        };
+
+        // console.log(movieToEdit);
+        // console.log(updatedMovie);
+
+        $.ajax({
+            url: 'https://localhost:44352/api/movie/' + movieToEdit.Id,
+            dataType: 'json',
+            type: 'put',
+            contentType: 'application/json',
+       		data: JSON.stringify(updatedMovie),
+            success: function( data, textStatus, jQxhr ){
+            	//updateMovie(data);
+                console.log(data);
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+            }
+        })
+    }
+
+
+</script>
 
 </body>
 </html>

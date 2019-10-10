@@ -1,0 +1,82 @@
+{
+	"variables": [],
+	"info": {
+		"name": "MovieLibrary",
+		"_postman_id": "75e1c087-323e-fa64-17aa-14dbe67bf7fe",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://localhost:44352/api/movie",
+			"request": {
+				"url": "https://localhost:44352/api/movie/54",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"Id\": \"54\",\n        \"Title\": \"Die Hard\",\n        \"Genre\": \"Action\",\n        \"DirectorName\": \"John McTiernan\"\n    }"
+				},
+				"description": "// POST api/movie"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44352/api/movie",
+			"request": {
+				"url": "https://localhost:44352/api/movie",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "// GET api/movie"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44352/api/movie/1",
+			"request": {
+				"url": "https://localhost:44352/api/movie/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"Id\": 1,\n        \"Title\": \"The Departed\",\n        \"Genre\": \"Drama/Crime\",\n        \"DirectorName\": \"Martin Scorsese\"\n    }"
+				},
+				"description": "// PUT api/movie/1\n\nupdate Genre to \"Drama/Crime\""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:44352/api/movie/1",
+			"request": {
+				"url": "https://localhost:44352/api/movie/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"Id\": 1,\n        \"Title\": \"The Departed\",\n        \"Genre\": \"Drama/Crime\",\n        \"DirectorName\": \"Martin Scorsese\"\n    }"
+				},
+				"description": "// GET api/movie/1\n\nreturn updated movie"
+			},
+			"response": []
+		}
+	]
+}

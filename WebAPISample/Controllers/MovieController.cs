@@ -32,6 +32,7 @@ namespace WebAPISample.Controllers
         // GET api/movies/1
         public Movie GetMovie(int id)
         {
+
             // Retrieve movie by id from db logic
             var movie = context.Movies.SingleOrDefault(m => m.Id == id);
 
