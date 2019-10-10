@@ -1,4 +1,6 @@
 (function($){
+
+    
     
     function processForm( e ){
         var dict = {
@@ -14,10 +16,15 @@
             contentType: 'application/json',
             data: JSON.stringify(dict),
             success: function( data, textStatus, jQxhr ){
+                //MovieStuff = data;
+                //$(".movieData").empty();
+                //console.log(data);
+                populateMovieLibrary();
+                //.then()
+
                 // remove the existing table to avoid duplicate tables
                 //populateTable();
-                $('#response pre').html( data );
-                //console.log("success");
+                //$('#response pre').html( data );
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log( errorThrown );
@@ -34,17 +41,24 @@
             type: 'get',    
             contentType: 'application/json',
             success: function( data, textStatus, jQxhr ){
-                //var table = $('#movie-library');
+                $("#my-form")[0].reset();
+                $(".movieData").empty();
+                $.each(data , function(index, value){
+                    $('.movieData').append(
+                        "<tr>" +
+                        "<td>" + value.Title + "</td>" +
+                        "<td>" + value.DirectorName + "</td>" +
+                        "<td>" + value.Genre + "</td>" +
+                        "</tr>");
 
-                // REMOVE TABLE TO NOT CREATE DUPLICATES!!! 
-                
-                $('#my-form').after(textStatus);
-                $('#response').append('<table id=\"movie-library\" class=\"table table-striped table-hover\"</table>');
-                $('#movie-library').append('<tr>' + 
-                    '<th>Title</th>' +
-                    '<th>Director</th>' +
-                    '<th>Genre</th>' +
-                    '</tr>');
+
+                    console.log(value);
+                })
+
+
+
+                // console.log(data);
+                // console.log('success');
 
                 // $.each(data, function(i , element){
                 //     table.append(`<tr id="row${element.MovieId}">

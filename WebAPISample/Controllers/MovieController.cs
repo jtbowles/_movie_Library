@@ -18,9 +18,15 @@ namespace WebAPISample.Controllers
         }
 
         // GET api/movie
-        public IEnumerable<Movie> GetMovies()
+        //public IEnumerable<Movie> GetMovies()
+        //{
+        //    return context.Movies.ToList();
+        //}
+
+        public IHttpActionResult Get()
         {
-            return context.Movies.ToList();
+            var movies = context.Movies.ToList();
+            return Ok(movies);
         }
 
         // GET api/movies/1
