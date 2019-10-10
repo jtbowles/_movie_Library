@@ -1,7 +1,5 @@
 (function($){
 
-    
-    
     function processForm( e ){
         var dict = {
         	Title : this["title"].value,
@@ -45,32 +43,16 @@
                 $(".movieData").empty();
                 $.each(data , function(index, value){
                     $('.movieData').append(
-                        "<tr>" +
-                        "<td>" + value.Title + "</td>" +
+                        "<tr id=''>" +
+                        "<td contenteditable='true'>" + value.Title + "</td>" + 
                         "<td>" + value.DirectorName + "</td>" +
                         "<td>" + value.Genre + "</td>" +
+                        "<td><button class='btn btn-link' type='submit' onclick='updateMovie(${value.Id})'>Edit</button></td>" +
                         "</tr>");
 
 
                     console.log(value);
                 })
-
-
-
-                // console.log(data);
-                // console.log('success');
-
-                // $.each(data, function(i , element){
-                //     table.append(`<tr id="row${element.MovieId}">
-                //     <td contenteditable id="title${element.MovieId}"'>${element.Title}
-                //    </td><td contenteditable id="director${element.MovieId}">${element.Director}
-                //    </td><td contenteditable id="genre${element.MovieId}">${element.Genre}</td>
-                //    <td><button onclick="SubmitEdit(${element.MovieId})" class="btn btn-link"
-                //    id="${element.MovieId}" type="submit">Update</button></td></tr>`)
-                // });
-
-                //console.log('success');
-
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log( errorThrown );
@@ -79,11 +61,47 @@
     }
 
 
+    function getMovie(id){
+        $.ajax({
+            url: 'https://localhost:44352/api/movie/' + id,
+            dataType: 'json',
+            type: 'get',
+            data: {id},
+            success: function( data, textStatus, jQxhr ){
+                console.log(data);
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+            }
+        })
+    }
+
+// $(function(){
+//     $('#updateElement'.click(function(){
+//         updateMovie();
+//     }))
+// })
+
     $('#my-form').submit( processForm );
     $('#getmovies').on('click', populateMovieLibrary);
+    //$('#updateElement').on('click', updateMovie);
 })(jQuery);
 
 
+    function updateMovie(id){
+        $.ajax({
+            // url: 'https://localhost:44352/api/movie/' + id,
+            dataType: 'json',
+            type: 'get',    
+            contentType: 'application/json',
+            success: function( data, textStatus, jQxhr ){
+                console.log("success");
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+            }
+        });
+    }
 
 
 
