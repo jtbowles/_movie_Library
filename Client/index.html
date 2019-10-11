@@ -6,15 +6,25 @@
     <link rel="stylesheet" type="text/css" href="sandstoneBootstrapTheme.css">
 </head>
 <body>
-	<br />
 
-	<form id="my-form">
+	<div class="panel panel-info">
+	  <div class="panel-heading">
+	    <h3 align="center" class="panel-title">Welcome to the Ultimate Movie Library</h3>
+	  </div>
+	  <div class="panel-body">
+			<center class="text-info">Add a new movie to the library after filling out the form and clicking submit</center>
+			<center class="text-info">Click the 'Movie Library' button to view all of our movies</center>
+			<center class="text-info">Click the 'Edit Library' button to update new movies</center>
+	  </div>
+	</div>
+
+	<form align="center" id="my-form" class="form-horizontal">
 	    <input type="text" name="title" placeholder="Title" />
 	    <input type="text" name="director" placeholder="Director" />
 	    <input type="text" name="genre" placeholder="Genre" />
 
-	    <button type="submit">Submit</button>
-	    <button type="reset">Reset</button>
+	    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+	    <button type="reset" class="btn btn-danger btn-sm">Reset</button>
 	</form>
 
 	<br />
@@ -30,18 +40,19 @@
 		<tbody class="movieData"></tbody>
 	</table>
 
+	<button id="getmovies" type="button" class="btn btn-default btn-sm">Movie Library</button>
+	<button id="editmovies" type="button" class="btn btn-default btn-sm">Edit Library</button>
 
-	<div id="response">
-	    <pre></pre>
+	<br>
+	<div class="well well-sm">
+		<small>***update ability a work in progress***</small>
 	</div>
-	
-	<button id="getmovies" type="button">Movie Library</button>
-	<button id="editmovies" type="button">Edit Library</button>
-	<button id="updatemovies" type="button">Update Library</button>
-
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" src="./app.js"></script>
+
+
+
 
 <script type="text/javascript">
 
@@ -52,15 +63,14 @@
             type: 'get',
             data: {id},
             success: function( data, textStatus, jQxhr ){
-            	//console.log(id);
-            	updateMovie(data);
-                //console.log(data);
+            	console.log(id);
+            	console.log(data);
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log( errorThrown );
             }
         })
-    }
+	}
 
         function updateMovie(movieToEdit){
         var updatedMovie = {
@@ -70,9 +80,6 @@
         	DirectorName : movieToEdit.DirectorName
         };
 
-        // console.log(movieToEdit);
-        // console.log(updatedMovie);
-
         $.ajax({
             url: 'https://localhost:44352/api/movie/' + movieToEdit.Id,
             dataType: 'json',
@@ -80,8 +87,8 @@
             contentType: 'application/json',
        		data: JSON.stringify(updatedMovie),
             success: function( data, textStatus, jQxhr ){
-            	//updateMovie(data);
-                console.log(data);
+                //console.log(data);
+                //console.log(updatedMovie);
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log( errorThrown );
